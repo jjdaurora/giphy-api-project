@@ -1,0 +1,19 @@
+nav > ul {
+	margin-right: 20px;
+	color: white;
+}
+
+.buttons-area {
+	padding-top: 50px;
+	padding-bottom: 5px;
+}
+
+button {
+	color: white;
+	margin: 2px;
+}
+
+#gifs-container {
+	padding: 15px;
+}
+
