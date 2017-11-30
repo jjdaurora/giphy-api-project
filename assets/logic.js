@@ -4,16 +4,19 @@
 
 var topics = ["Drake", "Kendrick Lamar", "Biggie", "Kanye", "Timbaland"]
 
+
+
 $(document).ready(function() {
+  $("#add-button").click(addButton);
   for (var j = 0; j < topics.length; j++) { 
       var buttons = $('<button>'+ topics[j] + '</button>');
       buttons.addClass("btn btn-primary game-button");
       buttons.attr("data-person", topics[j]);
-      $('.buttons-area').append(buttons); 
-
+      $('.buttons-area').append(buttons);
+      
 };
 
-$("#add-button").on("click", function() {
+ function addButton() {
         event.preventDefault();
         var gifValue = $("#add-gif-input").val();
         topics.push(gifValue);
@@ -23,10 +26,13 @@ $("#add-button").on("click", function() {
         $('.buttons-area').append(newGif); 
         console.log(topics);
         
-});
+};
 
 
 // this function gets the results from the GIF API and posts them to the screen 
+
+
+
 
 $(".game-button").on("click", function() {
   $("#gifs-container").empty();
@@ -57,18 +63,19 @@ $(".game-button").on("click", function() {
         personImage.attr("data-animate", results[i].images.fixed_height.url);
         personImage.attr("data-state", "still");
         personImage.attr("id", "image-gif");
-
+        $("#image-gif").click(changeDataState);
 
         gifDiv.prepend(p);
         gifDiv.prepend(personImage);
 
         $("#gifs-container").append(gifDiv);
+
       }
     });
   });
 
 
-  $("#image-gif").on("click", function() {
+function changeDataState() {
 
     var state = $(this).attr("data-state");
 
@@ -82,5 +89,7 @@ $(".game-button").on("click", function() {
         $(this).attr("data-state", "still");
 
     }
-  });
+  };
 }); 
+
+
