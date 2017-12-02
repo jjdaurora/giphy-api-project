@@ -16,7 +16,7 @@ $(document).ready(function() {
       
 };
 
- function addButton() {
+ function addButton(event) {
         event.preventDefault();
         var gifValue = $("#add-gif-input").val();
         topics.push(gifValue);
@@ -24,17 +24,19 @@ $(document).ready(function() {
         newGif.addClass("btn btn-primary game-button");
         newGif.attr("data-person", gifValue);
         $('.buttons-area').append(newGif); 
-        console.log(topics);
         
 };
+
+
 
 
 // this function gets the results from the GIF API and posts them to the screen 
 
 
 
+$(document).on("click", ".game-button", function() {
 
-$(".game-button").on("click", function() {
+// $(".game-button").on("click", function() {
   $("#gifs-container").empty();
   var person = $(this).attr("data-person");
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
@@ -63,19 +65,19 @@ $(".game-button").on("click", function() {
         personImage.attr("data-animate", results[i].images.fixed_height.url);
         personImage.attr("data-state", "still");
         personImage.attr("id", "image-gif");
-        $("#image-gif").click(changeDataState);
 
         gifDiv.prepend(p);
         gifDiv.prepend(personImage);
 
         $("#gifs-container").append(gifDiv);
 
+
       }
     });
   });
 
+$(document).on("click", "#image-gif", function() {
 
-function changeDataState() {
 
     var state = $(this).attr("data-state");
 
@@ -89,7 +91,7 @@ function changeDataState() {
         $(this).attr("data-state", "still");
 
     }
-  };
-}); 
+  });
+});
 
 
